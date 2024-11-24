@@ -1,0 +1,238 @@
+Changes in 1.1.6
+
+1 - 'rufImpute( )' has integrated all methods for the imputation of missing values present in the package. 
+The option 'na.action' has been added with arguments 'na.action = c("accurateImpute", "fastImpute", "veryFastImpute")'. 'na.action' is also used in 'randomUniformForest( )' and includes, in addition, the argument "omit". See ?rufImpute for more details and examples.
+
+2 - Breiman's bounds integrate now bias estimation (in classification) in order to warn the user about the possible
+ estimation error of the Breiman's bounds. One has to integrate it to the 'strength' in order to correct bounds.
+ A bias correction is proposed, see 'print.randomUniformForest( )' function.
+ 
+3 - 'postProcessingVotes( )' integrates new options to improve classification and regression. In the latter a 'method'
+ with argument 'residuals', is added. It has been first proposed by Xu (Improvements to random forest methodology, 2013).
+ The method computes a second model that is built on the residuals of the first one. Then the resulted predictions 
+ are subtracted from the predictions of the first model. 
+
+4 - 'kappa statistic' has been introduced for classification.
+
+5 - 'nstart' option has been added to the unsupervised mode for consistency with k-Means clustering.
+
+6 - 'clusterAnalysis( )' now allows regression, transforming the dependent variable into 4 quantile intervals.
+One can also transforms regression responses into factors and send them to 'clusteredObject' option.
+Some bugs have also been corrected.
+
+7 - 'clusteringObservations( )' did not work for large datasets. It has been corrected. 'subset' option is also integrated, allowing to choose a subsample.
+
+8 - 'unsupervised.randomUniformForest( )' has been updated to allow more options. Please still consider it as a beta
+release, since it uses many layers that need more optimization.
+
+9 - 'reSMOTE()' now accepts data frame as an input.
+
+10 - Interactions between pairs of features are now standardized in order for each variable to have an average interaction
+comparable to 1.
+
+11 - 'partialDependenceBetweenPredictors( )' now accepts more than two features in order to model dependencies between
+all the features and their effect on the dependent variable. 
+
+12 - Various bugs corrected.
+
+Changes in 1.1.3 to 1.1.5
+
+1 - Unsupervised mode has been updated to deeper take into account dimension reduction and visualization, 
+and to be more flexible. Options and examples have also been updated and are more detailed.
+
+2 - 'clusterAnalysis( )' function has been introduced. It allows to get a full analysis of the clustering results
+in a compact and granular representation. It also works for classification.
+
+3 - 'splitClusters( )' function has been added. it allows to split a cluster in 2 parts, creating new ones.
+
+4 - Spectral clustering (Ng, Jordan and Weiss algorithm with slight modifications) has been introduced 
+in a beta release.
+
+5 - 'rm.coordinates( )' has been introduced. It allows to remove coordinates that do not matter when, and after, doing spectral clustering.
+While not documented for now, one can look examples in 'unsupervised.randomUniformForest( )' function.
+
+6 - Proximities matrix was not correctly normalized to have maximum value equal to 1. It is now corrected.
+
+7 - Proximities matrix uses now two ways to compute similarities. The former one used similarities with a value 1
+for any proximity, leading to a binary matrix. The new and default one follows exactly Breiman's formulation. 
+Associated option is called 'sparseProximities', to choose between the two.
+
+8 - Option 'categoricalvariablesidx' can now be replaced by its alias 'categorical' and values can be either subscripts 
+or names of the variables (between quotes), or "all" (as before).
+
+9 - 'rufImpute( )' has been added as an alias of 'fillNA2.randomUniformForest( )'. Examples have been detailed.
+
+10 - 'reSMOTE( )' has been updated to sample minority class conditionally to the class distribution or to another
+ variable of the training set.
+
+11 - OOB evaluation, using 'rebalancedsampling' option, has been updated to take into account the whole sample
+instead of a part of it (which were formerly, for each tree, OOB cases in the rebalanced sample).
+
+12 - 'print( )' method of 'importance( )' and 'summary( )' methods of 'randomUniformForest( )' have been updated. 
+ The especially add a comment to warn the user between the order of predictive (distinguish all classes) features, 
+ which are plotted, different to the order of discriminant (distinguish one class much better than another) ones. 
+ Both cases are present in the table of Global Variable Importance.
+
+13 - 'plot( )' method of 'importance( )' function has been adapted to display partial dependencies for a better
+ visibility, e.g. at first order for large datasets and by not filtering outliers. 
+
+14 - Computing Breiman's bounds formerly used all available cores except logical ones, overriding 'threads' option.
+It is now consistent with 'threads'.
+
+15 - 'combine.unsupervised( )' has been renamed to 'combineUnsupervised( )' for consistency with S3 methods.
+
+16 - Vignette has been updated. 
+
+17 - Various bugs corrected and documentation improved.
+
+Changes in 1.1.2
+
+1 - Option 'usesubtrees' has been introduced for large datasets support. It allows to grow trees with an arbitrary depth
+that are, in a second step, updated by extending all non pure nodes. The option is mainly designed to reduce memory
+footprint while possibly providing faster convergence and computing times. Note that many other usages can be found. 
+
+2 - Improvements on preprocessing time.
+
+3 - Improvements on categorical variables. Previously, the engine did not take into account that a categorical variable
+could be selected many times in each node ('the sampling with replacement features'), leading to a lower accuracy.
+This new release allows categorical variables to, possibly, get further improvements using large 'mtry' values. 
+For more informations about how categorical variables are handled, see the Details section of ?randomUniformForest.
+
+4 - Extended support of large files for the unsupervised mode. New functions, 'update.unsupervised( )' and 'combine.unsupervised( )', added. 
+The first one allows the unsupervised learning engine to be updated with new data. The second one (while experimental) allows to combine many unsupervised objects.
+Both lead to incremental unsupervised learning while the second one will be able to handle (at least partially) shifting distributions. Some bugs have also been corrected.
+
+5 - 'bagging' option updated to support the selection of an arbitrary number of variables when used in conjunction with 'mtry'. 
+More precisely if 'bagging' is enabled and 'mtry' being a value lower or equal to the dimension of data, then sample without replacement of 'mtry' variables will be done.
+
+6 - For imbalanced multi-classes classification, the algorithm was not reporting correctly the true labels. The bug is now fixed.
+
+7 - Improvements and new examples for the generic cross-validation function 'generic.cv( )'.
+
+8 - Improvements on the robustness to datasets which could, formerly, be weakened by some optimizations.
+
+9 - Vignette has been updated to revise consistency between theoretical formulae and R code implementation.
+
+10 - New vignette has been added.
+
+Changes in 1.1.1
+
+1 - 'subset' option added when using formula.
+
+2 - Limited support for large files in unsupervised learning. More precisely, for datasets with more than 2000 rows
+a subsample is learned in a full unsupervised mode and the remaining points are predicted in the MDS space, before applying clustering. 
+Some options have also be removed, since they are not easy to assess. Next update will allow full support.
+
+3 - 'clusteringObservations( )' function is now matching objects coming from a formula.
+
+4 - 'modifyClusters( )' function is now working for unsupervised objects that use hierarchical clustering.
+
+5 - Using specific combinations of options lead to build some trees with no defined leaves. Such trees lead R to crash.
+Patch has been added to force all trees to have well defined leaves. 
+Note that the algorithm deletes variables that are no longer useful during the growth of a tree (which was possibly a cause for the bug).
+
+6 - Cut-points, information gain and 'Lp' distances return now values rounded to have 4 decimals.
+
+7 - Missing values imputation, 'fillNA2.randomUniformForest( )' function, has been improved to better match categorical variables.
+
+8 - Automatic detection of categorical variables has been improved.
+
+9 - Algorithm has been updated to convert null character, "", into a numeric value. 
+Hence it still is a missing value from the point of view of original data, 
+but internally it is treated as an explicit numeric value different from others numeric ones in the variable. 
+
+10 - OOB evaluation now detects cases with very imbalanced classes that can not be predicted correctly.
+
+11 - A new (experimental) function, 'reSMOTE( )', has been added in order to handle very imbalanced datasets.
+
+12 - Main functionalities have been detailed, see the Details section of ?randomUniformForest, and more examples added.
+
+13 - Seed has been added to the unsupervised mode for stability of the results.
+
+14 - Various bugs corrected.
+
+Changes in 1.1.0
+
+1 - New method used to choose cut-points lead to loss of accuracy for low values of 'mtry' and in the unsupervised case. 
+Cut-points choice has been changed in order to separate classification, unsupervised mode and regression. 
+In Regression and unsupervised learning, cut-points are chosen using the whole support of each candidate variable, 
+as in initial release and prior to the 1.0.9 one. In Classification, the support is now reduced to two random points 
+chosen among a small number. This leads to more diversity in trees. 
+
+2 - Categorical variables were not correctly matched when one was using 'categoricalvariablesidx' option.
+
+3 - Better handling of categorical variables when assessing partial dependencies.
+
+Changes in 1.0.9 - 1.1.x :
+
+1 - Cut-points of each node are now chosen between two random points of each candidate variable. 
+Previously, the whole support was chosen. This update on the optimization criterion leads to faster computation while not changing accuracy. 
+
+2 - Introduction of unsupervised learning using the following chain commands paradigm:
+pre-processing (following Breiman's ideas) + randomUniformForest proximities matrix +  Multidimensional scaling + 
+gap statistics (for estimating the number of clusters) + kmeans (for identifying every observation)
+Unsupervised learning introduces then many concepts that still need to be properly referenced. 
+Note that implementation for large datasets is currently not integrated.
+
+3 - 'model.stats( )' and 'generic.cv( )' are now documented and bugs fixed.
+'model.stats( )' function displays many informations (confusion matrix, ROC curves, residuals,...) for any vector
+of predictions and responses. 'generic.cv( )' function proceeds to a k-fold cross-validation for any algorithm (with however some manual code).
+
+4 - Better matching of NA values and comments to allow the right choice of imputation when predicting data with missing values.
+
+5 - Improvements in speed and accuracy when using one (or both) of the options 'depth' or 'depthcontrol'.
+Especially for large files (> 100 000 rows), increase both speed and accuracy when using the 'rUniformForest.big( )' function.
+Note that the latter splits data in chunks, therefore one can not reach the accuracy of an (or the same) algorithm using the whole sample.
+
+6 - Variable importance bug corrected for 'rUniformForest.big( )' function.
+
+7 - Variable importance bug corrected when using formula in 'randomUniformForest( )' function.
+
+8 - Improvements in speed, especially for large samples (> 50 000 rows) and high dimension (> 100 variables) in the regression case.
+More precisely, large datasets take most of the benefits of optimizations added.
+
+9 - Improvements in the accuracy of variable importance
+
+10 - Minor bugs corrected
+
+Changes in 1.0.7 - 1.0.8 :
+
+1- Full support of categorical variables.
+They were formerly matched by the same function than continuous ones, leading to some troubles in Variable importance and a loss of accuracy.
+Now, categorical variables used their own engine, from modelling to variable importance and selection.
+In addition, one can now use discrete values as categorical, e.g., in order to know if one frequent value in a variable can affect the response.
+Note that accuracy might drop in contrast of the default case, for which algorithm considers all variables as continuous ones,
+
+2 - Partial dependence plots.
+better match of categorical variables and 3D representation
+
+3 - Quantile regression.
+Value of quantile was between 1 and 99 and not 0 and 1 as required.
+
+4 - Variable importance. 
+Bugs correction : when prediction Object was present, importance was not correctly computed, leading to wrong interactions between features.
+Interactions plot was also inverted (1rst order was 2nd).
+
+5 - Variable importance is now allowed with mtry = 1. As a consequence, one can assess variable importance using purely random forest.
+
+6 - outputperturbationSampling.
+It is now allowed to replace all original values of train responses by a random vector sampled from those values (mean and variance)
+using gaussian distribution.
+
+7 - Summary.
+random Uniform forests summary is now unified and one can also use model.stats( ) function to assess predictions vs responses.
+
+8 - Missing values.
+fillNA2.randomUniformForest( ) is now working with large files.
+
+9 - Prediction. 
+Prediction is now possible for only one observation.
+
+10- Rebalanced sampling.
+Sample of any size or class distribution is allowed with rebalancedsampling option.
+
+11 - Area Under Precision-Recall Curve is available using roc.curve( ) function.
+
+12 - rUniformForest.grow( ) function is now working with outputperturbationSampling enabled in first run before adding more trees.
+
+13 - Various bugs corrected.

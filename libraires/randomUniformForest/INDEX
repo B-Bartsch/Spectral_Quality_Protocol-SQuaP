@@ -1,0 +1,67 @@
+CheckSameValuesInAllAttributes
+                        All internal functions
+ConcreteCompressiveStrength
+                        Concrete Compressive Strength Data Set
+as.supervised           Conversion of an unsupervised model into a
+                        supervised one
+autoMPG                 Auto MPG Data Set
+bCI                     Bootstrapped Prediction Intervals for Ensemble
+                        Models
+biasVarCov              Bias-Variance-Covariance Decomposition
+breastCancer            Breast Cancer Wisconsin (Original) Data Set
+carEvaluation           Car Evaluation Data Set
+clusterAnalysis         Cluster (or classes) analysis of importance
+                        objects.
+clusteringObservations
+                        Cluster observations of a (supervised)
+                        randomUniformForest object
+combineUnsupervised     Combine Unsupervised Learning objects
+fillNA2.randomUniformForest
+                        Missing values imputation by
+                        randomUniformForest
+generic.cv              Generic k-fold cross-validation
+getTree.randomUniformForest
+                        Extract a tree from a forest
+importance.randomUniformForest
+                        Variable Importance for random Uniform Forests
+init_values             Training and validation samples from data
+mergeClusters           Merge two arbitrary, but adjacent, clusters
+model.stats             Common statistics for a vector (or factor) of
+                        predictions and a vector (or factor) of
+                        responses
+modifyClusters          Change number of clusters (and clusters shape)
+                        on the fly
+partialDependenceBetweenPredictors
+                        Partial Dependence between Predictors and
+                        effect over Response
+partialDependenceOverResponses
+                        Partial Dependence Plots and Models
+partialImportance       Partial Importance for random Uniform Forests
+plotTree                Plot a Random Uniform Decision Tree
+postProcessingVotes     Post-processing for Regression
+predict.randomUniformForest
+                        Predict method for random Uniform Forests
+                        objects
+rUniformForest.big      Random Uniform Forests for Classification and
+                        Regression with large data sets
+rUniformForest.combine
+                        Incremental learning for random Uniform Forests
+rUniformForest.grow     Add trees to a random Uniform Forest
+randomUniformForest     Random Uniform Forests for Classification,
+                        Regression and Unsupervised Learning
+randomUniformForest-package
+                        Random Uniform Forests for Classification,
+                        Regression and Unsupervised Learning
+reSMOTE                 REplication of a Synthetic Minority
+                        Oversampling TEchnique for highly imbalanced
+                        datasets
+rm.trees                Remove trees from a random Uniform Forest
+roc.curve               ROC and precision-recall curves for random
+                        Uniform Forests
+simulationData          Simulation of Gaussian vector
+splitClusters           Split a cluster on the fly
+unsupervised.randomUniformForest
+                        Unsupervised Learning with Random Uniform
+                        Forests
+update.unsupervised     Update Unsupervised Learning object
+wineQualityRed          Wine Quality Data Set
