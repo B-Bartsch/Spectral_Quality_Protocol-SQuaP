@@ -1,1 +1,1 @@
-# Assessment-of-the-Consistency-of-Soil-Spectral-Data-A-Protocol
+# Soil laboratory and Satellite Spectral Data Filtering: A Spectral Quality Protocol (SQuaP)
